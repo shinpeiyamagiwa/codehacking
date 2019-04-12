@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use Auth;
-use App\Http\Requests;
 use App\Http\Requests\PostsCreateRequeast;
 use App\Post;
-use App\User;
 use App\Photo;
+use App\Category;
+
+use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class AdminPostsController extends Controller
 {
@@ -31,7 +33,8 @@ class AdminPostsController extends Controller
     public function create()
     {
         //
-        return view('admin.posts.create');
+        $categories = Category::lists('name', 'id')->all();
+        return view('admin.posts.create', compact('categories'));
 
     }
 
